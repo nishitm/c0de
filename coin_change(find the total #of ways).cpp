@@ -48,19 +48,12 @@ int coin1(int val)
     return 0;
 }
 
-
-
-int no_of_ways_to_make_value(int val)
-{
-  return coin1(val) + coin2(val) + coin3(val);
-}
-
 int main()
 {
   int val = 20;
 
   std::sort(coin.begin(),coin.end());
-  int ways= no_of_ways_to_make_value(val);
+  int ways= coin1(val);
 
   cout<<"#of ways:"<<ways<<endl;
   return 0;
