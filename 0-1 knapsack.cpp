@@ -18,9 +18,9 @@ int knapSack(int W, vector<int> wt, vector<int> val, int n)
 
 int main()
 {
-  vector<int> val = {60, 100, 120};
-  vector<int> wt = {10, 10, 30};
-  int  W = 40;
+  vector<int> val = {10,4,5,5,10};
+  vector<int> wt = {1,2,5,3,6};
+  int  W = 9;
 
   cout<< "Max value is:"<<knapSack(W,wt,val,wt.size())<<endl;
 

@@ -3,7 +3,7 @@
 #include<algorithm>
 using namespace std;
 
-vector<int> coin={3,5,10};
+vector<int> coin={1,2,5};
 
 
 int coin3(int val)
@@ -50,7 +50,7 @@ int coin1(int val)
 
 int main()
 {
-  int val = 20;
+  int val = 10;
 
   std::sort(coin.begin(),coin.end());
   int ways= coin1(val);

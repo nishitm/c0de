@@ -14,7 +14,7 @@ int longest_palindrome(string s, int i, int j)
    if (s[i] == s[j])
       return longest_palindrome(s, i+1, j-1) + 2;
 
-    return max( longest_palindrome(s, i, j-1), longest_palindrome(s, i+1, j) );
+    return max(longest_palindrome(s, i, j-1), longest_palindrome(s, i+1, j));
 }
 
 int main()
