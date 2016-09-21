@@ -13,7 +13,6 @@ void permutation(string s, int n, int m)
        {
           std::swap(s[n], s[i]);
           permutation(s, n+1, m);
-          std::swap(s[n],s[i]);
        }
    }
 }
