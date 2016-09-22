@@ -40,8 +40,11 @@ void find_changes(string s1, string s2, int n, int m)
 
 int main()
 {
-  string s1="rohit";
-  string s2="nishit";
+  string s1,s2;
+  cout<<"Enter string 1:";
+  cin>>s1;
+  cout<<"Enter string 2:";
+  cin>>s2;
 
   find_changes(s1,s2,s1.length(),s2.length());
 
