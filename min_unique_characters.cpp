@@ -1,4 +1,14 @@
-#include <iostream>
+// Problem::You are given two strings, say A and B, of the same length, say N.
+          // You can swap A[i] and B[i] for all i between 1 and N, inclusive.
+          // You cannot swap two characters within A, or within B.
+          // Also, you can only swap a character in A with the character at the same index in B, and with no other character.
+          // You can perform this operation zero or more times.
+          // You wish to modify the strings through the operations in such a way that the number of unique characters in the strings is small.
+          // In fact if n(A) is the number of unique characters in A and n(B) is the number of unique characters in B;
+          // you wish to perform the operations such that max(n(A),n(B)) is as small as possible.
+          // Print the value of max(n(A),n(B)) after all the operations.
+
+#include <bits/stdc++.h>>
 
 using namespace std;
 
