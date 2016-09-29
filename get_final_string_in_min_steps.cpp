@@ -103,7 +103,7 @@ int main()
 
   int min_step= Intial2final(i,f);
 
-  cout<<min_step<<endl;
+  cout<<"min no of steps are:"<<min_step<<endl;
 
   return 0;
 }
