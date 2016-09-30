@@ -91,16 +91,7 @@ int main()
         }
       }
     }
-    //
-    //  for(int i=0;i<26;i++)
-    // {
-    //   if(ind[i]==-1)
-    //     continue;
-    //   cout<<(char)(i+'a')<<":"<<ind[i]<<endl;
-    // }
-    //   for(auto j:adjacencyList[i])
-    //     cout<<(char)(i+'a')<<"-->"<<j<<endl;
-
+    
     topo_sort(adjacencyList,ind);
 
     return 0;
