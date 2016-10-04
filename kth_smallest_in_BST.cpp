@@ -5,7 +5,7 @@ template<typename type>
 struct binarynode{
   type val;
   struct binarynode<type> *left,*right;
-  type left_count,right_count;
+  type left_count;
 };
 
 template <typename type>
@@ -18,7 +18,6 @@ void insert(binarynode<type>* &root,binarynode<type>* &temp)
         root->left = NULL;
         root->right = NULL;
         root->left_count=0;
-        root->right_count=0;
         return;
     }
     if (root->val > temp->val)
@@ -38,7 +37,6 @@ void insert(binarynode<type>* &root,binarynode<type>* &temp)
     }
     else
     {
-        root->right_count++;
         if (root->right != NULL)
         {
             insert(root->right, temp);
@@ -82,7 +80,6 @@ int main()
     cout<<"Enter value:";
     cin>>temp->val;
     temp->left_count=0;
-    temp->right_count=0;
     insert(root,temp);
   }
 
