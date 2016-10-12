@@ -1,8 +1,65 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+string longestPalindrome(string s) {
 
-int longest_palindrome(string s)
+    int i = 0;
+       int p = 0, q = 0;
+       int len = s.length();
+       int pos = 0;
+       int max_len = 1;
+
+       while (i < len)
+       {
+           //odd
+           p = i - 1;
+           q = i + 1;
+
+           if ((len - q) * 2 + 1 < max_len)
+               break;
+
+           while (p >= 0 && q < len && s[p] == s[q])
+           {
+               p--;
+               q++;
+           }
+
+           p++;
+           q--;
+           int tmp = q - p + 1;
+           if (tmp > max_len)
+           {
+               max_len = tmp;
+               pos = p;
+           }
+
+           //even
+           p = i;
+           q = i + 1;
+
+           while (p >= 0 && q < len && s[p] == s[q])
+           {
+               p--;
+               q++;
+           }
+
+           p++;
+           q--;
+           tmp = q - p + 1;
+           if (tmp > max_len)
+           {
+               max_len = tmp;
+               pos = p;
+           }
+
+           i++;
+       }
+
+       return s.substr(pos, max_len);
+
+}
+
+int longest_palindrome_length(string s)
 {
   int n = s.length();
   vector<vector<bool> > table(n);
@@ -48,8 +105,9 @@ int main()
   cout<<"Enter the string:";
   cin>>s;
 
-  int size=longest_palindrome(s);
+  int size=longest_palindrome_length(s);
 
   cout<<"Longest palindrome substring is of size:"<<size<<endl;
+  cout<<"Longest palindrome string is:"<<longestPalindrome(s)<<endl;
   return 0;
 }
