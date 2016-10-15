@@ -21,34 +21,37 @@ output
 
 using namespace std;
 
-long long int max_xor_prefix_suffix(vector<long long int> nums)
+long long max_xor_prefix_suffix(vector<long long> vec)
 {
-    vector<long long int> prefix(nums.size()+1),suffix(nums.size()+1);
-    int n=nums.size();
+    vector<long long> prefix(vec.size()+1),suffix(vec.size()+1);
+    int n=vec.size();
     prefix[0]=0;
-    suffix[nums.size()]=0;
-    for(int i=1;i<=nums.size();++i)
-        prefix[i]=prefix[i-1]^nums[i-1];
-    for(int j=nums.size()-1;j>=0;--j)
-        suffix[j]=suffix[j+1]^nums[j];
+    suffix[vec.size()]=0;
 
-    long long int maxxor=0;
-    for(int i=0;i<=nums.size();++i)
-        for(int j=i;j<=nums.size();++j)
+    for(int i=1;i<=vec.size();++i)
+        prefix[i]=prefix[i-1]^vec[i-1];
+        
+    for(int j=vec.size()-1;j>=0;--j)
+        suffix[j]=suffix[j+1]^vec[j];
+
+    long long maxxor=0;
+    for(int i=0;i<=vec.size();++i)
+        for(int j=i;j<=vec.size();++j)
             maxxor=max(prefix[i]^suffix[j],maxxor);
+
     return maxxor;
 }
 
 int main()
 {
-    vector<long long int> v;
     int n;
-    long long int temp;
     cin>>n;
+    vector<long long> vec(n);
+    int i=0;
     while(n--){
-        cin>>temp;
-        v.push_back(temp);
+        cin>>vec[i];
+        i++;
     }
-    cout<<max_xor_prefix_suffix(v)<<endl;
+    cout<<max_xor_prefix_suffix(vec)<<endl;
     return 0;
 }
