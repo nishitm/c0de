@@ -13,29 +13,6 @@ So we can recognize the character with only bottom-left pixel, the answer is 1.
 #include<bits/stdc++.h>
 using namespace std;
 
-void subsequncesOfKLength(vector<string> prefix,vector<string> strings,int k,vector<vector<string> > &result)
-{                                                                                                                               //function to generate all possible k length bit combinations
-    if(k<0)
-        return;
-    if(k==0)
-        result.push_back(prefix);
-    else if(strings[0].size()){
-        vector<string> prefix2,strings2;
-        for(int i=0;i<prefix.size();++i){
-            prefix2.push_back(prefix[i]+strings[i][0]);
-            strings2.push_back(strings[i].substr(1));
-        }
-        subsequncesOfKLength(prefix2,strings2,k-1,result);
-        prefix2.clear();
-        strings2.clear();
-        for(int i=0;i<prefix.size();++i){
-            prefix2.push_back(prefix[i]);
-            strings2.push_back(strings[i].substr(1));
-        }
-        subsequncesOfKLength(prefix2,strings2,k,result);
-    }
-}
-
 bool isValid(vector<string> subseq)
 {
     set<string> existed;
@@ -48,13 +25,39 @@ bool isValid(vector<string> subseq)
     return true;
 }
 
-int min_bits_differ(vector<string> strings)
+void subsequncesOfKLength(vector<string> pref,vector<string> input ,int k, vector<vector<string> > &result)
+{                                                                                                                               //function to generate all possible k length bit combinations
+    if(k<0)
+        return;
+    if(k==0)
+        result.push_back(pref);
+    else if(input[0].size()){
+        vector<string> pref2,input2;
+        for(int i=0;i<pref.size();++i)
+        {
+            pref2.push_back(pref[i]+input[i][0]);
+            input2.push_back(input[i].substr(1));
+        }
+        subsequncesOfKLength(pref2,input2,k-1,result);
+        pref2.clear();
+        input2.clear();
+        for(int i=0;i<pref.size();++i)
+        {
+            pref2.push_back(pref[i]);
+            input2.push_back(input[i].substr(1));
+        }
+        subsequncesOfKLength(pref2,input2,k,result);
+    }
+}
+
+int min_bits_differ(vector<string> input)
 {
-    int lower = ceil(log(strings.size())),upper=strings.size()-1;  //set the lower limit for the no of bits required
-    vector<string> prefix(strings.size(),"");
-    for(int i=lower;i<=upper;++i){
+    int lower = ceil(log2(input.size())),upper=input.size()-1;  //set the lower limit for the no of bits required
+    vector<string> pref(input.size(),"");
+    for(int i=lower;i<=upper;++i)
+    {
         vector<vector<string> > subseqs;
-        subsequncesOfKLength(prefix,strings,i,subseqs);           //find all possible i length of bit combinations
+        subsequncesOfKLength(pref,input,i,subseqs);           //find all possible i length of bit combinations
         for(auto subseq:subseqs)
             if(isValid(subseq))                                   // check if these i length bit combination can uniquely identify all strings or not?
                 return i;
@@ -90,7 +93,7 @@ void remove_irrelevent(vector<string>& input, int n, int m)
 
 int main()
 {
-    vector<string> strings;
+    vector<string> input;
     int N, M, K;
     cin >> N >> M >> K;
     int k=K;
@@ -102,15 +105,15 @@ int main()
             cin >> tmp;
             str += tmp;
         }
-        strings.push_back(str);
+        input.push_back(str);
     }
     if(k<4)
     {
         cout<<k-1<<endl;
         return 0;
     }
-    remove_irrelevent(strings,N,M); //To remove the irrelevent bits in calculation (i.e. bits which are '1' or '0' in all string at perticular position)
+    remove_irrelevent(input,N,M); //To remove the irrelevent bits in calculation (i.e. bits which are '1' or '0' in all string at perticular position)
 
-    cout<<min_bits_differ(strings)<<endl;
+    cout<<min_bits_differ(input)<<endl;
     return 0;
 }
